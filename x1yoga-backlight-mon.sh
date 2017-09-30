@@ -12,10 +12,10 @@ luminance() {
 }
 
 read -r max < "$path"/max_brightness
-xrandr --output eDP1 --brightness "$(luminance)"
+xrandr --output eDP-1 --brightness "$(luminance)"
 
 
 inotifywait -me modify --format '' "$path"/actual_brightness | while read -r directory events filename; do
-    xrandr --output eDP1 --brightness "$(luminance)"
+    xrandr --output eDP-1 --brightness "$(luminance)"
 done
 
