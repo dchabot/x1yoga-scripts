@@ -16,6 +16,11 @@ xrandr --output eDP-1 --brightness "$(luminance)"
 
 
 inotifywait -me modify --format '' "$path"/actual_brightness | while read -r directory events filename; do
+    lum=$(luminance)
+    if [ "$lum" = ".31000000000000000000" ]; then
+        # ignoring value from gsd-backlight-helper"
+        continue
+    fi
     xrandr --output eDP-1 --brightness "$(luminance)"
 done
 
